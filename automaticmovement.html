@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Snake Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Antic+Slab" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <canvas id="snakeboard" width="400" height="400"></canvas>
+
+    <style>
+      #snakeboard {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </body>
+
+  
+  <script>
+    const board_border = 'black';
+    const board_background = "white";
+    const snake_col = 'lightblue';
+    const snake_border = 'darkblue';
+    
+    let snake = [
+      {x: 200, y: 200},
+      {x: 190, y: 200},
+      {x: 180, y: 200},
+      {x: 170, y: 200},
+      {x: 160, y: 200}
+    ]
+    
+    // Horizontal velocity
+    let dx = 10;
+    // Vertical velocity
+    let dy = 0;
+    
+    // Get the canvas element
+    const snakeboard = document.getElementById("snakeboard");
+    // Return a two dimensional drawing context
+    const snakeboard_ctx = snakeboard.getContext("2d");
+    // Start game
+    main();
+    
+        // main function called repeatedly to keep the game running
+        function main() {
+        setTimeout(function onTick() {
+        clear_board();
+        move_snake();
+        drawSnake();
+        // Call main again
+        main();
+      }, 100)
+    }
+    
